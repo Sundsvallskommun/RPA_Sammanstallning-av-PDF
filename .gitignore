@@ -1,0 +1,26 @@
+#ignore UiPath temp files
+.local/
+
+#ignore UiPath .objects files
+.objects/
+
+#ignore UiPath .settings files
+.settings/
+
+#ignore autosave word files
+~*.docx 
+
+#ignore autosave excel files
+~*.xlsx 
+
+#ignore Exceptions_Screenshots
+Exceptions_Screenshots/
+
+#ignore Screenshots
+.screenshots/
+
+#ignore autosave UiPath files
+~*.xaml 
+
+#ignore media files
+*.Media/
