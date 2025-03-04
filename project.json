@@ -1,9 +1,13 @@
 {
-  "name": "RoboticEnterpriseFramework-Legacy",
+  "name": "Sammanstallning Av PDF",
+  "projectId": "1d2f6cb5-2703-4346-9e23-dc360ba73695",
   "description": "Robotic Enterprise Framework (Windows Legacy)",
   "main": "Main.xaml",
   "dependencies": {
+    "OpenEplatform.API": "[1.0.15-alpha.1]",
     "UiPath.Excel.Activities": "[2.20.3]",
+    "UiPath.Mail.Activities": "[1.22.2]",
+    "UiPath.PDF.Activities": "[3.2.2]",
     "UiPath.System.Activities": "[24.3.1]",
     "UiPath.Testing.Activities": "[23.10.1]",
     "UiPath.UIAutomation.Activities": "[23.10.13]"
@@ -12,7 +16,7 @@
   "entitiesStores": [],
   "schemaVersion": "4.0",
   "studioVersion": "23.4.5.0",
-  "projectVersion": "1.0.0",
+  "projectVersion": "1.0.1-alpha",
   "runtimeOptions": {
     "autoDispose": false,
     "netFrameworkLazyLoading": false,
@@ -92,7 +96,8 @@
         "fileName": "Tests\\TakeScreenshotTestCase.xaml"
       }
     ],
-    "modernBehavior": false
+    "modernBehavior": false,
+    "saveToCloud": false
   },
   "expressionLanguage": "VisualBasic",
   "entryPoints": [

@@ -1,12 +1,14 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:o="clr-namespace:OpenEplatform_API;assembly=OpenEplatform.API" xmlns:oc="clr-namespace:OpenEplatform_API.Callback_Integration;assembly=OpenEplatform.API" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:sxl="clr-namespace:System.Xml.Linq;assembly=System.Xml.Linq" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upap="clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_SendMail" Type="InArgument(x:Boolean)" />
+    <x:Property Name="in_NrOfCasesLeft" Type="InArgument(x:Int32)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1095,585</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1729,1187</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="50">
@@ -36,47 +38,499 @@
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>System.Runtime.InteropServices</x:String>
       <x:String>System.Windows.Forms</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>OpenEplatform_API</x:String>
+      <x:String>UiPath.PDF.Activities.PDF</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>System.Globalization</x:String>
+      <x:String>OpenEplatform_API.Callback_Integration</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>UiPath.Web</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="40">
-      <AssemblyReference>System.Activities</AssemblyReference>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="80">
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
-      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
       <AssemblyReference>System</AssemblyReference>
-      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
       <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
       <AssemblyReference>System.Xml</AssemblyReference>
       <AssemblyReference>System.Xml.Linq</AssemblyReference>
-      <AssemblyReference>PresentationFramework</AssemblyReference>
-      <AssemblyReference>WindowsBase</AssemblyReference>
-      <AssemblyReference>PresentationCore</AssemblyReference>
-      <AssemblyReference>System.Xaml</AssemblyReference>
-      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
-      <AssemblyReference>System.ServiceModel</AssemblyReference>
-      <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
-      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
-      <AssemblyReference>System.Memory</AssemblyReference>
-      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
-      <AssemblyReference>System.Windows.Forms</AssemblyReference>
-      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
-      <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>OpenEplatform.API</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Web</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="376,380" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="512,1051" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="OePUrl" />
+      <Variable x:TypeArguments="x:String" Name="Cred_NA_OeP" />
+      <Variable x:TypeArguments="x:String" Name="OePUsername" />
+      <Variable x:TypeArguments="ss:SecureString" Name="OePPassword" />
+      <Variable x:TypeArguments="x:String" Name="FilePathPDF" />
+      <Variable x:TypeArguments="x:Boolean" Name="MergedFileExist" />
+      <Variable x:TypeArguments="x:String" Name="MergeFilePath" />
+      <Variable x:TypeArguments="x:Int32" Name="CaseID" />
+      <Variable x:TypeArguments="x:String" Name="TempMergeFolderPath" />
+      <Variable x:TypeArguments="x:String" Name="Environment" />
+      <Variable x:TypeArguments="sxl:XDocument" Name="CaseXMLData" />
+      <Variable x:TypeArguments="x:String" Name="ReportType" />
+      <Variable x:TypeArguments="sxl:XNamespace" Default="[&quot;http://www.oeplatform.org/version/2.0/schemas/flowinstance&quot;]" Name="FlowInstance" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
-    <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="334,55" sap2010:WorkflowViewState.IdRef="Comment_1" Text="//  Invoke steps of the process" />
+    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="450,92" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
+    <Sequence DisplayName="Set Variables From Config" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_29">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="Assign Cred_NA_OeP" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_2">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Cred_NA_OeP]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_Config("Cred_NA_OeP").ToString]</InArgument>
+        </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Assign>
+      <Assign DisplayName="Assign OePUrl" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_1">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[OePUrl]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_Config("OeP_URL").ToString]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign TempMergeFolderPath" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_6">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[TempMergeFolderPath]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_Config("TempMergeFolderPath").ToString]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign MergeFilePath" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_3">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[MergeFilePath]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_Config("MergeFilePath").ToString]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign MergeFilePath" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_17">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[MergeFilePath]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[MergeFilePath + DateTime.Now.ToString("MMMM yyyy", New System.Globalization.CultureInfo("sv-SE")) + ".pdf"]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign FlowInstance" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_10">
+        <Assign.To>
+          <OutArgument x:TypeArguments="sxl:XNamespace">[FlowInstance]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="sxl:XNamespace">[in_Config("FlowInstance").ToString]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Assign Environment" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_11">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[Environment]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[in_Config("Environment").ToString]</InArgument>
+        </Assign.Value>
+      </Assign>
+    </Sequence>
+    <ui:GetRobotCredential AssetName="[Cred_NA_OeP]" CacheStrategy="None" DisplayName="Private: Get Credential" sap:VirtualizedContainerService.HintSize="450,52" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[OePPassword]" TimeoutMS="5000" Username="[OePUsername]">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:GetRobotCredential>
+    <Sequence DisplayName="Get PDF And XML From OeP" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_22">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="XMLAsString" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="Assign CaseID" sap:VirtualizedContainerService.HintSize="492,82" sap2010:WorkflowViewState.IdRef="Assign_8">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Int32">[CaseID]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Int32">[CInt(in_TransactionItem.Reference.ToString)]</InArgument>
+        </Assign.Value>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Assign>
+      <ui:RetryScope DisplayName="Retry Scope Get XML" sap:VirtualizedContainerService.HintSize="492,338" sap2010:WorkflowViewState.IdRef="RetryScope_1">
+        <ui:RetryScope.ActivityBody>
+          <ActivityAction>
+            <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="450,163" sap2010:WorkflowViewState.IdRef="Sequence_13">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <o:Get_Case_XML_or_PDF FilenameWithoutExtension="{x:Null}" FoundCase="{x:Null}" GetAsPDF="{x:Null}" PDFFilePath="{x:Null}" TempFolder="{x:Null}" CaseDataAsXMLDocument="[CaseXMLData]" CaseID="[CaseID]" DisplayName="Get Case XML or PDF" DomainURL="[OePUrl]" sap:VirtualizedContainerService.HintSize="388,52" sap2010:WorkflowViewState.IdRef="Get_Case_XML_or_PDF_5" NumberOfTries="1" Password="[OePPassword]" RequestTimeout="15000" Username="[OePUsername]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </o:Get_Case_XML_or_PDF>
+            </Sequence>
+          </ActivityAction>
+        </ui:RetryScope.ActivityBody>
+        <ui:RetryScope.Condition>
+          <ActivityFunc x:TypeArguments="x:Boolean" />
+        </ui:RetryScope.Condition>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:RetryScope>
+      <ui:RetryScope DisplayName="Retry Scope Get PDF" sap:VirtualizedContainerService.HintSize="492,578" sap2010:WorkflowViewState.IdRef="RetryScope_3">
+        <ui:RetryScope.ActivityBody>
+          <ActivityAction>
+            <Sequence DisplayName="Action" sap:VirtualizedContainerService.HintSize="450,403" sap2010:WorkflowViewState.IdRef="Sequence_15">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <o:Get_Case_XML_or_PDF CaseDataAsXMLDocument="{x:Null}" FoundCase="{x:Null}" CaseID="[CaseID]" DisplayName="Get Case XML or PDF" DomainURL="[OePURL]" FilenameWithoutExtension="test" GetAsPDF="True" sap:VirtualizedContainerService.HintSize="388,292" sap2010:WorkflowViewState.IdRef="Get_Case_XML_or_PDF_3" NumberOfTries="1" PDFFilePath="[FilePathPDF]" Password="[OePPassword]" RequestTimeout="15000" TempFolder="[TempMergeFolderPath]" Username="[OePUsername]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </o:Get_Case_XML_or_PDF>
+            </Sequence>
+          </ActivityAction>
+        </ui:RetryScope.ActivityBody>
+        <ui:RetryScope.Condition>
+          <ActivityFunc x:TypeArguments="x:Boolean" />
+        </ui:RetryScope.Condition>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:RetryScope>
+    </Sequence>
+    <Assign DisplayName="Assign reportType" sap:VirtualizedContainerService.HintSize="450,82" sap2010:WorkflowViewState.IdRef="Assign_16">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[ReportType]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">[CaseXMLData.Descendants(FlowInstance + "reportType").Elements(FlowInstance + "Value").Value.Tostring]</InArgument>
+      </Assign.Value>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </Assign>
+    <If Condition="[Not ReportType.Equals(&quot;Kontaktperson LSS&quot;)]" DisplayName="If Merge All Except 'Kontaktperson'" sap:VirtualizedContainerService.HintSize="450,52" sap2010:WorkflowViewState.IdRef="If_7">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="450,588" sap2010:WorkflowViewState.IdRef="Sequence_16">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,92" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[&quot;Merge: &quot; + CaseID.ToString]" />
+          <ui:FileExistsX DisplayName="File Exists" Exists="[MergedFileExist]" sap:VirtualizedContainerService.HintSize="388,133" sap2010:WorkflowViewState.IdRef="FileExistsX_2" Path="[MergeFilePath]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:FileExistsX>
+          <If Condition="[MergedFileExist]" DisplayName="If File Exists" sap:VirtualizedContainerService.HintSize="388,52" sap2010:WorkflowViewState.IdRef="If_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If.Then>
+              <Sequence sap:VirtualizedContainerService.HintSize="450,171" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <upap:JoinPDF DisplayName="Join PDF Files" FileList="[New String() {FilePathPDF, MergeFilePath}]" sap:VirtualizedContainerService.HintSize="388,60" sap2010:WorkflowViewState.IdRef="JoinPDF_2" OutputFileName="[MergeFilePath]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </upap:JoinPDF>
+              </Sequence>
+            </If.Then>
+            <If.Else>
+              <Sequence sap:VirtualizedContainerService.HintSize="450,264" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:CopyFile ContinueOnError="{x:Null}" Destination="[MergeFilePath]" DisplayName="Copy File" sap:VirtualizedContainerService.HintSize="388,153" sap2010:WorkflowViewState.IdRef="CopyFile_1" Path="[FilePathPDF]" />
+              </Sequence>
+            </If.Else>
+          </If>
+          <ui:DeleteFileX DisplayName="Delete File" sap:VirtualizedContainerService.HintSize="388,80" sap2010:WorkflowViewState.IdRef="DeleteFileX_2" Path="[FilePathPDF]">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:DeleteFileX>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap:VirtualizedContainerService.HintSize="450,203" sap2010:WorkflowViewState.IdRef="Sequence_17">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,92" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[&quot;Mergear inte: &quot; + CaseID.ToString]" />
+        </Sequence>
+      </If.Else>
+    </If>
+    <Sequence DisplayName="Change Status Case" sap:VirtualizedContainerService.HintSize="450,81" sap2010:WorkflowViewState.IdRef="Sequence_35">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:Boolean" Name="Success" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <oc:Set_Status EventID="{x:Null}" ExternalID="{x:Null}" ExternalIDSystem="{x:Null}" Headers="{x:Null}" PrincipalName="{x:Null}" PrincipalUserID="{x:Null}" StatusCode="{x:Null}" StatusID="{x:Null}" CaseID="[CaseID]" DisplayName="Set Status &quot;Klart&quot;" DomainURL="[OePUrl]" sap:VirtualizedContainerService.HintSize="486,239" sap2010:WorkflowViewState.IdRef="Set_Status_2" NumberOfTries="1" Password="[OePPassword]" RequestTimeout="15000" StatusAlias="Klart" Success="[Success]" Username="[OePUsername]">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </oc:Set_Status>
+      <If sap2010:Annotation.AnnotationText="" Condition="[Not Success]" DisplayName="If Success" sap:VirtualizedContainerService.HintSize="486,325" sap2010:WorkflowViewState.IdRef="If_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <If.Then>
+          <Sequence sap:VirtualizedContainerService.HintSize="450,136" sap2010:WorkflowViewState.IdRef="Sequence_8">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Throw Exception="[New SystemException(&quot;Kunde inte ändra status på ärende: &quot; + CaseID.ToString)]" sap:VirtualizedContainerService.HintSize="388,25" sap2010:WorkflowViewState.IdRef="Throw_1" />
+          </Sequence>
+        </If.Then>
+        <If.Else>
+          <Sequence sap2010:WorkflowViewState.IdRef="Sequence_9">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Sequence>
+        </If.Else>
+      </If>
+    </Sequence>
+    <If Condition="[in_SendMail AndAlso in_NrOfCasesLeft = 0]" DisplayName="If Sending Mail" sap:VirtualizedContainerService.HintSize="450,52" sap2010:WorkflowViewState.IdRef="If_8">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="541,574" sap2010:WorkflowViewState.IdRef="Sequence_30">
+          <Sequence.Variables>
+            <Variable x:TypeArguments="x:String" Name="MailRecipient" />
+            <Variable x:TypeArguments="x:String" Name="MailSubject" />
+            <Variable x:TypeArguments="x:String" Name="MailBody" />
+            <Variable x:TypeArguments="x:Int32" Name="MailServerPort" />
+            <Variable x:TypeArguments="x:String" Name="MailSenderAddress" />
+            <Variable x:TypeArguments="x:String" Name="MailServerAddress" />
+            <Variable x:TypeArguments="x:String" Name="FolderPathToManagedFiles" />
+          </Sequence.Variables>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,271" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+            <ui:MultipleAssign.AssignOperations>
+              <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[MailRecipient]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[in_Config("MailRecipient").ToString]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_2">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[MailSubject]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[in_Config("MailSubject").ToString]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[MailBody]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[in_Config("MailBody").ToString]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:Int32">[MailServerPort]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:Int32">[CInt(in_Config("MailServerPort").ToString)]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[MailServerAddress]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[in_Config("MailServerAddress").ToString]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_5">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[MailSenderAddress]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[in_Config("MailSenderAddress").ToString]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
+              </scg:List>
+            </ui:MultipleAssign.AssignOperations>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:MultipleAssign>
+          <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Body="[MailBody]" DisplayName="Send SMTP Mail Message" Email="[MailSenderAddress]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="479,152" sap2010:WorkflowViewState.IdRef="SendMail_2" IgnoreCRL="False" IsBodyHtml="False" Port="[MailServerPort]" SecureConnection="Auto" Server="[MailServerAddress]" Subject="[MailSubject]" To="[MailRecipient]">
+            <ui:SendMail.Files>
+              <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                <InArgument x:TypeArguments="x:String">[MergeFilePath]</InArgument>
+              </scg:List>
+            </ui:SendMail.Files>
+          </ui:SendMail>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap:VirtualizedContainerService.HintSize="450,103" sap2010:WorkflowViewState.IdRef="Sequence_31">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
   </Sequence>
 </Activity>
