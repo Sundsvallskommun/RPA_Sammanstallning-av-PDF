@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:o="clr-namespace:OpenEplatform_API;assembly=OpenEplatform.API" xmlns:oc="clr-namespace:OpenEplatform_API.Callback_Integration;assembly=OpenEplatform.API" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:sxl="clr-namespace:System.Xml.Linq;assembly=System.Xml.Linq" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uia="clr-namespace:UiPathTeam.ImagesToPDF.Activities;assembly=UiPathTeam.ImagesToPDF.Activities" xmlns:upap="clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:o="clr-namespace:OpenEplatform_API;assembly=OpenEplatform.API" xmlns:oc="clr-namespace:OpenEplatform_API.Callback_Integration;assembly=OpenEplatform.API" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:sxl="clr-namespace:System.Xml.Linq;assembly=System.Xml.Linq" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uia="clr-namespace:UiPathTeam.ImagesToPDF.Activities;assembly=UiPathTeam.ImagesToPDF.Activities" xmlns:upap="clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
@@ -8,7 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1554,4933</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1554,3888</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="50">
@@ -110,7 +110,7 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1564,4868" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1564,3823" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="OePUrl" />
       <Variable x:TypeArguments="x:String" Name="Cred_NA_OeP" />
@@ -280,7 +280,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <If Condition="[Not ReportType.Equals(&quot;Kontaktperson LSS&quot;)]" DisplayName="If Merge All Except 'Kontaktperson'" sap:VirtualizedContainerService.HintSize="1502,3251" sap2010:WorkflowViewState.IdRef="If_7">
+    <If Condition="[Not ReportType.Equals(&quot;Kontaktperson LSS&quot;)]" DisplayName="If Merge All Except 'Kontaktperson'" sap:VirtualizedContainerService.HintSize="1502,1333" sap2010:WorkflowViewState.IdRef="If_7">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -288,7 +288,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="1007,3091" sap2010:WorkflowViewState.IdRef="Sequence_16">
+        <Sequence sap:VirtualizedContainerService.HintSize="1007,1173" sap2010:WorkflowViewState.IdRef="Sequence_16">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -324,14 +324,15 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:RetryScope>
-          <Sequence DisplayName="DownSize" sap:VirtualizedContainerService.HintSize="945,1999" sap2010:WorkflowViewState.IdRef="Sequence_36">
+          <Sequence DisplayName="DownSize" sap:VirtualizedContainerService.HintSize="945,81" sap2010:WorkflowViewState.IdRef="Sequence_36">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:Int32" Name="PageCount" />
               <Variable x:TypeArguments="x:Int32" Name="Index" />
             </Sequence.Variables>
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <upap:GetPDFPageCount DisplayName="Get PDF Page Count" FileName="[FilePathPDF]" sap:VirtualizedContainerService.HintSize="636,60" sap2010:WorkflowViewState.IdRef="GetPDFPageCount_1" PageCount="[PageCount]" />
@@ -399,9 +400,7 @@
                           </Assign>
                           <ui:InvokeCode ContinueOnError="{x:Null}" Code="If System.IO.File.Exists(filePath) Then&#xA;    System.IO.File.Delete(filePath)&#xA;End If&#xA;" DisplayName="Invoke Code Remove TempFiles" sap:VirtualizedContainerService.HintSize="434,165" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
                             <ui:InvokeCode.Arguments>
-                              <InArgument x:TypeArguments="x:String" x:Key="filePath">
-                                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="TempMergeFolderPath + &quot;\tempImage&quot; + Index.ToString + &quot;.jpeg&quot;" />
-                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="filePath">[TempMergeFolderPath + "\tempImage" + Index.ToString + ".jpeg"]</InArgument>
                             </ui:InvokeCode.Arguments>
                           </ui:InvokeCode>
                         </Sequence>
@@ -489,7 +488,7 @@
         </Sequence>
       </If.Else>
     </If>
-    <Sequence DisplayName="Change Status Case" sap:VirtualizedContainerService.HintSize="548,714" sap2010:WorkflowViewState.IdRef="Sequence_46">
+    <Sequence DisplayName="Change Status Case" sap:VirtualizedContainerService.HintSize="1502,81" sap2010:WorkflowViewState.IdRef="Sequence_46">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Boolean" Name="Success" />
       </Sequence.Variables>
@@ -536,15 +535,15 @@
         </If.Else>
       </If>
     </Sequence>
-    <If Condition="[in_SendMail AndAlso in_NrOfCasesLeft = 0]" DisplayName="If Sending Mail" sap:VirtualizedContainerService.HintSize="1502,52" sap2010:WorkflowViewState.IdRef="If_8">
+    <If Condition="[in_SendMail AndAlso in_NrOfCasesLeft = 0]" DisplayName="If Sending Mail" sap:VirtualizedContainerService.HintSize="1502,1558" sap2010:WorkflowViewState.IdRef="If_8">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence sap:VirtualizedContainerService.HintSize="541,571" sap2010:WorkflowViewState.IdRef="Sequence_30">
+        <Sequence sap:VirtualizedContainerService.HintSize="550,1369" sap2010:WorkflowViewState.IdRef="Sequence_30">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="MailRecipient" />
             <Variable x:TypeArguments="x:String" Name="MailSubject" />
@@ -559,7 +558,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="479,271" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="488,271" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
             <ui:MultipleAssign.AssignOperations>
               <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -619,13 +618,47 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:MultipleAssign>
-          <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Body="[MailBody]" DisplayName="Send SMTP Mail Message" Email="[MailSenderAddress]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="479,149" sap2010:WorkflowViewState.IdRef="SendMail_2" IgnoreCRL="False" IsBodyHtml="False" Port="[MailServerPort]" SecureConnection="Auto" Server="[MailServerAddress]" Subject="[MailSubject]" To="[MailRecipient]">
-            <ui:SendMail.Files>
-              <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
-                <InArgument x:TypeArguments="x:String">[MergeFilePath]</InArgument>
-              </scg:List>
-            </ui:SendMail.Files>
-          </ui:SendMail>
+          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="488,815" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+            <TryCatch.Try>
+              <Sequence sap:VirtualizedContainerService.HintSize="450,587" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="388,92" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;Försöker skicka mail&quot;]" />
+                <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Body="[MailBody]" DisplayName="Send SMTP Mail Message" Email="[MailSenderAddress]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="388,152" sap2010:WorkflowViewState.IdRef="SendMail_2" IgnoreCRL="False" IsBodyHtml="False" Port="[MailServerPort]" SecureConnection="Auto" Server="[MailServerAddress]" Subject="[MailSubject]" To="[MailRecipient]">
+                  <ui:SendMail.Files>
+                    <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
+                      <InArgument x:TypeArguments="x:String">[MergeFilePath]</InArgument>
+                    </scg:List>
+                  </ui:SendMail.Files>
+                </ui:SendMail>
+                <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Body="[MailBody]" DisplayName="Send SMTP Mail Message" Email="[MailSenderAddress]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="388,152" sap2010:WorkflowViewState.IdRef="SendMail_3" IgnoreCRL="False" IsBodyHtml="False" Port="[MailServerPort]" SecureConnection="Auto" Server="[MailServerAddress]" Subject="[MailSubject]" To="theresia.lundkvist@sundsvall.se">
+                  <ui:SendMail.Files>
+                    <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4" />
+                  </ui:SendMail.Files>
+                </ui:SendMail>
+              </Sequence>
+            </TryCatch.Try>
+            <TryCatch.Catches>
+              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="454,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ActivityAction x:TypeArguments="s:Exception">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                  </ActivityAction.Argument>
+                  <Rethrow sap:VirtualizedContainerService.HintSize="200,25" sap2010:WorkflowViewState.IdRef="Rethrow_1" />
+                </ActivityAction>
+              </Catch>
+            </TryCatch.Catches>
+          </TryCatch>
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="488,92" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[&quot;Lyckades skicka&quot;]" />
         </Sequence>
       </If.Then>
       <If.Else>
