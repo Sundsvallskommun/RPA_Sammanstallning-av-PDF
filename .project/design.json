@@ -1,5 +1,9 @@
 {
-  "Tags": [],
+  "Tags": [
+    {
+      "Key": "Open ePlatform"
+    }
+  ],
   "SeparateRuntimeDependencies": false,
   "IncludeSources": true
 }
