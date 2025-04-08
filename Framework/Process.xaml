@@ -8,7 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1654,4326</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>2087,3018</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="50">
@@ -110,15 +110,15 @@
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="1664,4261" sap2010:WorkflowViewState.IdRef="Sequence_52">
+  <Sequence sap:VirtualizedContainerService.HintSize="748,2953" sap2010:WorkflowViewState.IdRef="Sequence_52">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1602,4150" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="686,2842" sap2010:WorkflowViewState.IdRef="TryCatch_3">
       <TryCatch.Try>
-        <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1564,3922" sap2010:WorkflowViewState.IdRef="Sequence_1">
+        <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="648,2614" sap2010:WorkflowViewState.IdRef="Sequence_1">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="OePUrl" />
             <Variable x:TypeArguments="x:String" Name="Cred_NA_OeP" />
@@ -145,8 +145,8 @@
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="1502,92" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
-          <Sequence DisplayName="Set Variables From Config" sap:VirtualizedContainerService.HintSize="1502,81" sap2010:WorkflowViewState.IdRef="Sequence_29">
+          <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="586,92" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
+          <Sequence DisplayName="Set Variables From Config" sap:VirtualizedContainerService.HintSize="586,81" sap2010:WorkflowViewState.IdRef="Sequence_29">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -216,7 +216,7 @@
               </Assign.Value>
             </Assign>
           </Sequence>
-          <ui:GetRobotCredential AssetName="[Cred_NA_OeP]" CacheStrategy="None" DisplayName="Private: Get Credential" sap:VirtualizedContainerService.HintSize="1502,52" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[OePPassword]" TimeoutMS="5000" Username="[OePUsername]">
+          <ui:GetRobotCredential AssetName="[Cred_NA_OeP]" CacheStrategy="None" DisplayName="Private: Get Credential" sap:VirtualizedContainerService.HintSize="586,52" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[OePPassword]" TimeoutMS="5000" Username="[OePUsername]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -224,7 +224,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:GetRobotCredential>
-          <Sequence DisplayName="Get PDF And XML From OeP" sap:VirtualizedContainerService.HintSize="1502,81" sap2010:WorkflowViewState.IdRef="Sequence_22">
+          <Sequence DisplayName="Get PDF And XML From OeP" sap:VirtualizedContainerService.HintSize="586,81" sap2010:WorkflowViewState.IdRef="Sequence_22">
             <Sequence.Variables>
               <Variable x:TypeArguments="x:String" Name="XMLAsString" />
             </Sequence.Variables>
@@ -279,7 +279,7 @@
               </sap:WorkflowViewStateService.ViewState>
             </ui:RetryScope>
           </Sequence>
-          <Assign DisplayName="Assign reportType" sap:VirtualizedContainerService.HintSize="1502,82" sap2010:WorkflowViewState.IdRef="Assign_16">
+          <Assign DisplayName="Assign reportType" sap:VirtualizedContainerService.HintSize="586,82" sap2010:WorkflowViewState.IdRef="Assign_16">
             <Assign.To>
               <OutArgument x:TypeArguments="x:String">[ReportType]</OutArgument>
             </Assign.To>
@@ -293,10 +293,10 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </Assign>
-          <If Condition="[Not ReportType.Equals(&quot;Kontaktperson LSS&quot;)]" DisplayName="If Merge All Except 'Kontaktperson'" sap:VirtualizedContainerService.HintSize="1502,1333" sap2010:WorkflowViewState.IdRef="If_7">
+          <If Condition="[Not ReportType.Equals(&quot;Kontaktperson LSS&quot;)]" DisplayName="If Merge All Except 'Kontaktperson'" sap:VirtualizedContainerService.HintSize="586,52" sap2010:WorkflowViewState.IdRef="If_7">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
@@ -513,7 +513,7 @@
               </Sequence>
             </If.Else>
           </If>
-          <ui:RetryScope DisplayName="Retry Scope Set Status" sap:VirtualizedContainerService.HintSize="1502,52" sap2010:WorkflowViewState.IdRef="RetryScope_5" NumberOfRetries="3">
+          <ui:RetryScope DisplayName="Retry Scope Set Status" sap:VirtualizedContainerService.HintSize="586,52" sap2010:WorkflowViewState.IdRef="RetryScope_5" NumberOfRetries="3">
             <ui:RetryScope.ActivityBody>
               <ActivityAction>
                 <oc:Set_Status EventID="{x:Null}" ExternalID="{x:Null}" ExternalIDSystem="{x:Null}" Headers="{x:Null}" PrincipalName="{x:Null}" StatusCode="{x:Null}" StatusID="{x:Null}" CaseID="[CInt(CaseID)]" DisplayName="Set Status To Finished" DomainURL="[in_Config(&quot;OeP_URL&quot;).ToString.Trim.Replace(&quot;login2&quot;,&quot;api/callback&quot;)]" sap:VirtualizedContainerService.HintSize="334,239" sap2010:WorkflowViewState.IdRef="Set_Status_2" NumberOfTries="1" Password="[OePPassword]" PrincipalUserID="[OePUsername]" RequestTimeout="15000" StatusAlias="[in_Config(&quot;FinishedCaseStatus&quot;).ToString.Trim]" Success="[Success]" Username="[OePUsername]" />
@@ -531,7 +531,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:RetryScope>
-          <If Condition="[in_DontSendMail = False AndAlso in_NrOfCasesLeft = 0]" DisplayName="If Sending Mail And Change Filename" sap:VirtualizedContainerService.HintSize="1502,1686" sap2010:WorkflowViewState.IdRef="If_8">
+          <If Condition="[in_DontSendMail = False AndAlso in_NrOfCasesLeft = 0]" DisplayName="If Sending Mail And Change Filename" sap:VirtualizedContainerService.HintSize="586,1659" sap2010:WorkflowViewState.IdRef="If_8">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -539,7 +539,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <If.Then>
-              <Sequence sap:VirtualizedContainerService.HintSize="550,1497" sap2010:WorkflowViewState.IdRef="Sequence_30">
+              <Sequence sap:VirtualizedContainerService.HintSize="550,1470" sap2010:WorkflowViewState.IdRef="Sequence_30">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:String" Name="MailRecipient" />
                   <Variable x:TypeArguments="x:String" Name="MailSubject" />
@@ -549,13 +549,14 @@
                   <Variable x:TypeArguments="x:String" Name="MailServerAddress" />
                   <Variable x:TypeArguments="x:String" Name="FolderPathToManagedFiles" />
                   <Variable x:TypeArguments="x:String" Name="NewFilePath" />
+                  <Variable x:TypeArguments="x:String" Name="MailRecipientVoF" />
                 </Sequence.Variables>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:MultipleAssign DisplayName="Multiple Assign Mail" sap:VirtualizedContainerService.HintSize="488,271" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                <ui:MultipleAssign DisplayName="Multiple Assign Mail" sap:VirtualizedContainerService.HintSize="488,52" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
                   <ui:MultipleAssign.AssignOperations>
                     <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
                       <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -606,11 +607,19 @@
                           <InArgument x:TypeArguments="x:String">[in_Config("MailSenderAddress").ToString]</InArgument>
                         </ui:AssignOperation.Value>
                       </ui:AssignOperation>
+                      <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_7">
+                        <ui:AssignOperation.To>
+                          <OutArgument x:TypeArguments="x:String">[MailRecipientVoF]</OutArgument>
+                        </ui:AssignOperation.To>
+                        <ui:AssignOperation.Value>
+                          <InArgument x:TypeArguments="x:String">[in_Config("MailRecipientVoF").ToString]</InArgument>
+                        </ui:AssignOperation.Value>
+                      </ui:AssignOperation>
                     </scg:List>
                   </ui:MultipleAssign.AssignOperations>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -666,6 +675,17 @@
                   </Assign.Value>
                 </Assign>
                 <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[NewFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="488,158" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[MergeFilePath]" />
+                <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Body="[&quot;Ärenden har sammanställts och mail har skickats till löner. Länk till filen som skickades: &quot; + NewFilePath]" DisplayName="Send SMTP Mail Message To Verksamheten" Email="[MailSenderAddress]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="488,152" sap2010:WorkflowViewState.IdRef="SendMail_3" IgnoreCRL="False" IsBodyHtml="False" Port="[MailServerPort]" SecureConnection="Auto" Server="[MailServerAddress]" Subject="[MailSubject]" To="[MailRecipientVoF]">
+                  <ui:SendMail.Files>
+                    <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4" />
+                  </ui:SendMail.Files>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </ui:SendMail>
               </Sequence>
             </If.Then>
             <If.Else>
@@ -681,7 +701,7 @@
         </Sequence>
       </TryCatch.Try>
       <TryCatch.Catches>
-        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="1568,21" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+        <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="652,21" sap2010:WorkflowViewState.IdRef="Catch`1_3">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">False</x:Boolean>
