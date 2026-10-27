@@ -1,0 +1,6 @@
+{
+  "Name": "Sammanstallning Av PDF",
+  "ProjectType": "Process",
+  "Description": "Robotic Enterprise Framework (Windows Legacy)",
+  "MainFile": "Main.xaml"
+}

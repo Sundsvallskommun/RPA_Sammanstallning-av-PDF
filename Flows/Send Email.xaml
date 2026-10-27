@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Send_Email" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Send_Email" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
     <x:Property Name="in_MergeFilePath" Type="InArgument(x:String)" />
@@ -7,52 +7,54 @@
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
-      <x:String>System.Activities</x:String>
-      <x:String>System.Activities.Statements</x:String>
       <x:String>Microsoft.VisualBasic</x:String>
       <x:String>System</x:String>
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Statements</x:String>
       <x:String>System.Collections</x:String>
       <x:String>System.Collections.Generic</x:String>
-      <x:String>System.IO</x:String>
-      <x:String>System.Net.Mail</x:String>
-      <x:String>System.Xml</x:String>
-      <x:String>System.Xml.Linq</x:String>
-      <x:String>UiPath.Core.Activities</x:String>
       <x:String>System.Collections.ObjectModel</x:String>
-      <x:String>System.Activities.DynamicUpdate</x:String>
-      <x:String>System.Runtime.Serialization</x:String>
-      <x:String>System.Runtime.InteropServices</x:String>
-      <x:String>System.Reflection</x:String>
-      <x:String>System.Security</x:String>
-      <x:String>OpenEplatform_API</x:String>
-      <x:String>UiPath.PDF.Activities.PDF</x:String>
-      <x:String>OpenEplatform_API.Callback_Integration</x:String>
-      <x:String>System.Text.RegularExpressions</x:String>
-      <x:String>UiPath.Platform.ResourceHandling</x:String>
-      <x:String>UiPath.Mail</x:String>
-      <x:String>UiPath.Mail.SMTP.Activities</x:String>
-      <x:String>UiPath.Shared.Activities</x:String>
-      <x:String>UiPath.Mail.Activities</x:String>
-      <x:String>UiPathTeam.ImagesToPDF.Activities</x:String>
-      <x:String>UiPath.Shared.Activities.Business</x:String>
-      <x:String>System.Activities.Expressions</x:String>
       <x:String>System.Data</x:String>
       <x:String>System.Diagnostics</x:String>
       <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
       <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
       <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>UiPath.Mail</x:String>
+      <x:String>UiPath.Mail.Activities</x:String>
+      <x:String>UiPath.Mail.SMTP.Activities</x:String>
+      <x:String>UiPath.PDF.Activities.PDF</x:String>
+      <x:String>UiPath.Platform.ResourceHandling</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Shared.Activities.Business</x:String>
+      <x:String>UiPathTeam.ImagesToPDF.Activities</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
     <sco:Collection x:TypeArguments="AssemblyReference">
       <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
-      <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
       <AssemblyReference>PresentationCore</AssemblyReference>
       <AssemblyReference>PresentationFramework</AssemblyReference>
       <AssemblyReference>System</AssemblyReference>
       <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
       <AssemblyReference>System.Core</AssemblyReference>
@@ -60,43 +62,39 @@
       <AssemblyReference>System.Drawing</AssemblyReference>
       <AssemblyReference>System.Linq</AssemblyReference>
       <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
       <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.Windows.Forms</AssemblyReference>
       <AssemblyReference>System.Xaml</AssemblyReference>
       <AssemblyReference>System.Xml</AssemblyReference>
       <AssemblyReference>System.Xml.Linq</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
-      <AssemblyReference>WindowsBase</AssemblyReference>
-      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
-      <AssemblyReference>NPOI</AssemblyReference>
-      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
-      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
-      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
-      <AssemblyReference>OpenEplatform.API</AssemblyReference>
-      <AssemblyReference>UiPath.PDF.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.Web</AssemblyReference>
-      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.Platform</AssemblyReference>
-      <AssemblyReference>UiPath.Mail.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.Mail</AssemblyReference>
-      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
-      <AssemblyReference>UiPath.Mail.Activities.Design</AssemblyReference>
-      <AssemblyReference>UiPathTeam.ImagesToPDF.Activities</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
-      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>UiPathTeam.ImagesToPDF.Activities</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap:VirtualizedContainerService.HintSize="696,2203" sap2010:WorkflowViewState.IdRef="Sequence_54">
+  <Sequence sap:VirtualizedContainerService.HintSize="1735,2731" sap2010:WorkflowViewState.IdRef="Sequence_54">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="MailRecipient" />
       <Variable x:TypeArguments="x:String" Name="MailSubject" />
@@ -113,7 +111,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:MultipleAssign DisplayName="Multiple Assign Mail" sap:VirtualizedContainerService.HintSize="634,52" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+    <ui:MultipleAssign DisplayName="Multiple Assign Mail" sap:VirtualizedContainerService.HintSize="488,57" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -181,7 +179,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:MultipleAssign>
-    <TryCatch DisplayName="Try Catch Send Mail" sap:VirtualizedContainerService.HintSize="634,2000" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+    <TryCatch DisplayName="Try Catch Send Mail" sap:VirtualizedContainerService.HintSize="488,2651" sap2010:WorkflowViewState.IdRef="TryCatch_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -189,13 +187,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence DisplayName="Sending Mail" sap:VirtualizedContainerService.HintSize="596,1772" sap2010:WorkflowViewState.IdRef="Sequence_47">
+        <Sequence DisplayName="Sending Mail" sap:VirtualizedContainerService.HintSize="486,2015" sap2010:WorkflowViewState.IdRef="Sequence_47">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="534,92" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;Försöker skicka mail&quot;]">
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,179" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[&quot;Försöker skicka mail&quot;]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -203,10 +201,10 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:LogMessage>
-          <ui:RetryScope DisplayName="Retry Scope" sap:VirtualizedContainerService.HintSize="534,321" sap2010:WorkflowViewState.IdRef="RetryScope_6" NumberOfRetries="5" RetryInterval="[TimeSpan.FromSeconds(1)]">
+          <ui:RetryScope DisplayName="Retry Scope" sap:VirtualizedContainerService.HintSize="452,361" sap2010:WorkflowViewState.IdRef="RetryScope_6" NumberOfRetries="5" RetryInterval="[TimeSpan.FromSeconds(1)]">
             <ui:RetryScope.ActivityBody>
               <ActivityAction>
-                <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Body="[MailBody]" DisplayName="Send SMTP Mail Message" Email="[MailSenderAddress]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="334,146" sap2010:WorkflowViewState.IdRef="SendMail_4" IgnoreCRL="False" IsBodyHtml="True" Port="[MailServerPort]" SecureConnection="Auto" Server="[MailServerAddress]" Subject="[MailSubject]" To="[MailRecipient]">
+                <ui:SendMail Bcc="{x:Null}" Cc="{x:Null}" ContinueOnError="{x:Null}" From="{x:Null}" MailMessage="{x:Null}" Name="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" Result="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" UseOAuth="{x:Null}" Body="[MailBody]" DisplayName="Send SMTP Mail Message" Email="[MailSenderAddress]" EnableSSL="True" sap:VirtualizedContainerService.HintSize="334,148" sap2010:WorkflowViewState.IdRef="SendMail_4" IgnoreCRL="False" IsBodyHtml="True" Port="[MailServerPort]" SecureConnection="Auto" Server="[MailServerAddress]" Subject="[MailSubject]" To="[MailRecipient]">
                   <ui:SendMail.Files>
                     <scg:List x:TypeArguments="InArgument(x:String)" Capacity="4">
                       <InArgument x:TypeArguments="x:String">[in_MergeFilePath]</InArgument>
@@ -225,15 +223,15 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:RetryScope>
-          <TryCatch DisplayName="Try Catch byt namn på filen" sap:VirtualizedContainerService.HintSize="534,619" sap2010:WorkflowViewState.IdRef="TryCatch_4">
+          <TryCatch DisplayName="Try Catch byt namn på filen" sap:VirtualizedContainerService.HintSize="452,776" sap2010:WorkflowViewState.IdRef="TryCatch_4">
             <TryCatch.Try>
-              <Sequence sap:VirtualizedContainerService.HintSize="496,391" sap2010:WorkflowViewState.IdRef="Sequence_56">
+              <Sequence DisplayName="Try" sap:VirtualizedContainerService.HintSize="450,431" sap2010:WorkflowViewState.IdRef="Sequence_56">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <Assign DisplayName="Assign NewFileName" sap:VirtualizedContainerService.HintSize="434,82" sap2010:WorkflowViewState.IdRef="Assign_24">
+                <Assign DisplayName="Assign NewFileName" sap:VirtualizedContainerService.HintSize="416,179" sap2010:WorkflowViewState.IdRef="Assign_24">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:String">[NewFilePath]</OutArgument>
                   </Assign.To>
@@ -241,7 +239,7 @@
                     <InArgument x:TypeArguments="x:String">[System.IO.Path.Combine(System.IO.Path.GetDirectoryName(in_MergeFilePath), System.IO.Path.GetFileName(in_MergeFilePath).Replace(in_Config("ProcessingPrefix").ToString,in_Config("FinishedPrefix").ToString))]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[NewFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="434,158" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[in_MergeFilePath]" />
+                <ui:MoveFile ContinueOnError="{x:Null}" DestinationResource="{x:Null}" PathResource="{x:Null}" Destination="[NewFilePath]" DisplayName="Move File" sap:VirtualizedContainerService.HintSize="416,188" sap2010:WorkflowViewState.IdRef="MoveFile_1" Path="[in_MergeFilePath]" />
               </Sequence>
             </TryCatch.Try>
             <TryCatch.Catches>
@@ -256,7 +254,7 @@
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                   </ActivityAction.Argument>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Info" Message="[&quot;Kunde inte byta namn på filen: &quot; + in_MergeFilePath]">
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="450,143" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Info" Message="[&quot;Kunde inte byta namn på filen: &quot; + in_MergeFilePath]">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -267,8 +265,11 @@
                 </ActivityAction>
               </Catch>
             </TryCatch.Catches>
+            <TryCatch.Finally>
+              <Sequence DisplayName="Finally" sap2010:WorkflowViewState.IdRef="Sequence_57" />
+            </TryCatch.Finally>
           </TryCatch>
-          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="534,377" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="452,465" sap2010:WorkflowViewState.IdRef="TryCatch_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -304,8 +305,11 @@
                 </ActivityAction>
               </Catch>
             </TryCatch.Catches>
+            <TryCatch.Finally>
+              <Sequence DisplayName="Finally" sap2010:WorkflowViewState.IdRef="Sequence_58" />
+            </TryCatch.Finally>
           </TryCatch>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="534,92" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[&quot;Lyckades skicka meddelande till LoP. Nya filnemnet: &quot; + NewFilePath]">
+          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="452,170" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Info" Message="[&quot;Lyckades skicka meddelande till LoP. Nya filnemnet: &quot; + NewFilePath]">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -327,7 +331,7 @@
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
             </ActivityAction.Argument>
-            <Sequence sap:VirtualizedContainerService.HintSize="496,614" sap2010:WorkflowViewState.IdRef="Sequence_53">
+            <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,447" sap2010:WorkflowViewState.IdRef="Sequence_53">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -384,6 +388,9 @@
           </ActivityAction>
         </Catch>
       </TryCatch.Catches>
+      <TryCatch.Finally>
+        <Sequence DisplayName="Finally" sap2010:WorkflowViewState.IdRef="Sequence_59" />
+      </TryCatch.Finally>
     </TryCatch>
   </Sequence>
 </Activity>

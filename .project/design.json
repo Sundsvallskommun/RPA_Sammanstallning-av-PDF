@@ -5,5 +5,6 @@
     }
   ],
   "SeparateRuntimeDependencies": false,
-  "IncludeSources": true
+  "IncludeSources": true,
+  "ConnectorKeys": []
 }
